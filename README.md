@@ -9,5 +9,90 @@
 ## 🔐 Admin Authentication 
 - Admin login system
 -  -Secure session-based authentication
--  - aLogout functionality ## 👨‍🎓 Student Management - Add new students - Edit student details - Delete students - View student profile ## 📊 Marks Management - Add marks for multiple subjects - Automatic calculation of: - Total marks - Percentage - Grade classification ### Grade System | Percentage | Grade | |-----------|-------| | 90+ | A | | 75 – 89 | B | | 50 – 74 | C | | Below 50 | Fail | --- ## 📅 Attendance Management - Mark student attendance - Prevent duplicate attendance entries for the same day - Attendance status indicators ### Attendance Badge System | Badge | Meaning | |------|--------| | 🟢 **P** | Present | | 🔴 **A** | Absent | | ⚪ **N** | Not Marked | Badges are displayed directly on the **student card in the admin dashboard**. --- # 📈 Admin Dashboard The dashboard displays: - Student cards - Marks summary - Grade badges - Attendance status - Student connections ### Statistics Block The dashboard also shows: - Total number of students - Students present today - Students absent today - Grade distribution --- # 🔗 Student Connections Students can have **connections** with other students. Connections can represent: - Friends - Study partners - Team members These are visible on the student card. --- # 🛠 Technologies Used | Technology | Purpose | |-----------|--------| | Python | Backend programming | | Flask | Web framework | | MongoDB | Database | | PyMongo | MongoDB integration | | HTML5 | Structure | | CSS3 | Styling | | Jinja2 | Flask template engine | --- # 📁 Project Structure ``` student_atten/ │ ├── app.py ├── db.py ├── student.py │ ├── templates/ │ ├── base.html │ ├── home.html │ ├── admin_login.html │ ├── admin_dashboard.html │ ├── add_student.html │ ├── edit_student.html │ ├── marks.html │ ├── attendance.html │ └── view_student.html │ ├── static/ │ ├── style.css │ └── st.css │ └── README.md ``` --- # ⚙️ Installation ## 1. Clone the Repository ```bash git clone https://github.com/yourusername/student-attendance-system.git cd student-attendance-system ``` --- ## 2. Install Dependencies ```bash pip install flask pymongo ``` --- ## 3. Start MongoDB Start MongoDB service: ```bash sudo systemctl start mongod ``` or run ```bash mongod ``` --- ## 4. Create Admin Account Open MongoDB shell: ```bash mongo ``` Run: ```javascript use student_db db.admins.insertOne({ username: "admin", password: "admin123" }) ``` --- ## 5. Run the Application ```bash python app.py ``` Open browser: ``` http://127.0.0.1:5000 ``` Admin login page: ``` http://127.0.0.1:5000/admin/login ``` --- # 🖥 Example Dashboard The Admin Dashboard displays: ✔ Student cards ✔ Attendance badges ✔ Grade badges ✔ Marks summary ✔ Connections ✔ Statistics block --- # 🔮 Future Improvements Possible future features: - Student login portal - Export attendance reports - Data visualization (charts) - Email notifications - Role-based users - Mobile responsive UI - REST API integration --- # 👨‍💻 Author **Narasimha** GitHub: https://github.com/yourusername --- # 📜 License This project is licensed under the **MIT License**. ```
+-  - aLogout functionality
+ - ## 👨‍🎓 Student Management
+   - - Add new students
+   - - Edit student details
+   - - Delete students
+   - - View student profile
+ - ## 📊 Marks Management
+   - - Add marks for multiple subjects
+   - - Automatic calculation of:
+      - - Total marks - Percentage
+      - - Grade classification
+        ### Grade System
+| Percentage | Grade |
+| ---------- | ----- |
+| 90+        | A     |
+| 75 – 89    | B     |
+| 50 – 74    | C     |
+| Below 50   | Fail  |
+
+  ---
+         
+## 📅 Attendance Management 
+ - Mark student attendance
+ - Prevent duplicate attendance entries for the same day
+ - Attendance status indicators
+    -  ### Attendance Badge System
+| Badge | Meaning    |
+| ----- | ---------- |
+| 🟢 P  | Present    |
+| 🔴 A  | Absent     |
+| ⚪ N   | Not Marked |
+
+    
+- Badges are displayed directly on the **student card in the admin dashboard**.
+
 ---
+
+# 📈 Admin Dashboard
+
+The dashboard displays:
+
+- Student cards  
+- Marks summary  
+- Grade badges  
+- Attendance status  
+- Student connections  
+
+### 📊 Statistics Block
+
+The dashboard also shows:
+
+- Total number of students  
+- Students present today  
+- Students absent today  
+- Grade distribution  
+
+---
+
+# 🔗 Student Connections
+
+Students can have **connections** with other students.
+
+Connections can represent:
+
+- Friends  
+- Study partners  
+- Team members  
+
+These are visible on the student card.
+
+---
+
+# 🛠 Technologies Used
+
+| Technology | Purpose |
+|-----------|--------|
+| Python    | Backend programming |
+| Flask     | Web framework |
+| MongoDB   | Database |
+| PyMongo   | MongoDB integration |
+| HTML5     | Structure |
+| CSS3      | Styling |
+| Jinja2    | Flask template engine |
+
+---
+
+# 📁 Project Structure
