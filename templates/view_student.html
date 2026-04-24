@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>View Student</h2>
+<form method="POST">
+    <input type="text" name="roll" placeholder="Enter Roll Number" required>
+    <button type="submit">Search</button>
+</form>
+{% if error %}
+<p style="color:red;text-shadow: 3px 3px forestgreen; ;text-align: center;">{{ error }}</p>
+{% endif %}
+{% if student %}
+<div id="showing">
+
+<h3>{{ student.name }} ({{ student.roll }})</h3>
+<p>Total: {{ student.total }}</p>
+<p>Percentage: {{ student.percentage }}%</p>
+<p>Grade: {{ student.grade }}</p>
+<span>
+
+<menu>
+<h4>Attendance:</h4>
+{% for att in attendance %}
+    {{ att.date }} - {{ att.status }}<br>
+{% endfor %}
+</menu>
+</span>
+
+<h4>Connections:</h4>
+<ul>
+{% for friend in friends %}
+    <li>{{ friend.name }} ({{ friend.roll }})</li>
+{% endfor %}
+</ul>
+</div>
+{% endif %}
+{% endblock %}

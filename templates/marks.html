@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Add/Edit Marks{% endblock %}
+
+{% block content %}
+<h2>Add/Edit Marks for {{ student.name }} ({{ student.roll }})</h2>
+
+<form method="POST">
+    Number of Subjects: <input type="number" name="num_subjects" value="{{ student.marks|length if student.marks else 5 }}" min="1" max="10" required><br><br>
+    {% for i in range(student.marks|length if student.marks else 5) %}
+        Mark {{ i+1 }}: <input type="number" name="mark{{ i+1 }}" value="{{ student.marks[i] if student.marks|length > i else '' }}" required><br>
+    {% endfor %}
+    <br>
+    <button type="submit">Save Marks</button>
+</form>
+{% endblock %}

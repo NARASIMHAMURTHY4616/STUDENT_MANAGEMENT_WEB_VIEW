@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Connect Students</h2>
+<form method="POST">
+    <label>Choose Student:</label>
+    <select name="roll" required>
+        {% for s in students %}
+            <option value="{{ s.roll }}">{{ s.name }} ({{ s.roll }})</option>
+        {% endfor %}
+    </select>
+
+    <label>Choose Friend to Connect:</label>
+    <select name="friend_roll" required>
+        {% for s in students %}
+            <option value="{{ s.roll }}">{{ s.name }} ({{ s.roll }})</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Connect</button>
+</form>
+{% endblock %}

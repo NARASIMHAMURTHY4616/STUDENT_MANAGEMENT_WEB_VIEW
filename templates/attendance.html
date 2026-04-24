@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Mark Attendance{% endblock %}
+
+{% block content %}
+<h2>Mark Attendance</h2>
+
+{% if warning %}
+<p style="color:red;">{{ warning }}</p>
+{% endif %}
+
+<form method="POST">
+    Roll Number: <input type="text" name="roll" value="{{ roll_prefill }}" required><br><br>
+    Status:
+    <select name="status" required>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+    </select><br><br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

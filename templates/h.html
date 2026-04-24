@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<div class="stats">
+    <strong>Total Students:</strong> {{ total_students }}<br>
+    <strong>Present Today:</strong> {{ presents }}<br>
+    <strong>Absent Today:</strong> {{ absents }}<br>
+    <strong>Not Marked:</strong> {{ not_marked }}<br>
+    <strong>Grade Summary:</strong>
+    A: {{ grade_counts['A'] }}, B: {{ grade_counts['B'] }},
+    C: {{ grade_counts['C'] }}, Fail: {{ grade_counts['Fail'] }}
+</div>
+
+<div style="display:flex; flex-wrap:wrap;">
+    {% for student in students %}
+    <div class="card" style="width:300px;">
+        <h3>{{ student.name }} ({{ student.roll }})</h3>
+        <p><strong>Total:</strong> {{ student.total }} | <strong>Percentage:</strong> {{ student.percentage }}% | <strong>Grade:</strong> {{ student.grade }}</p>
+        <p><strong>Connections:</strong>
+            {% if student.connections %}
+                {% for c in student.connections %}
+                    {{ c }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                None
+            {% endif %}
+        </p>
+        <a href="{{ url_for('marks', roll=student.roll) }}">Add/Edit Marks</a> |
+        <a href="{{ url_for('mark_attendance', roll=student.roll) }}">Mark Attendance</a> |
+        <a href="{{ url_for('edit_student', roll=student.roll) }}">Edit</a> |
+        <a href="{{ url_for('delete_student', roll=student.roll) }}" onclick="return confirm('Are you sure?')">Delete</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

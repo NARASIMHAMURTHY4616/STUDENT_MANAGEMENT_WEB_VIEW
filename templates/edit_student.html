@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit Student{% endblock %}
+
+{% block content %}
+<h2>Edit Student {{ student.name }} ({{ student.roll }})</h2>
+
+<form method="POST">
+    Name: <input type="text" name="name" value="{{ student.name }}" required><br><br>
+    Connections: <br>
+    {% for s in all_students %}
+<div id="cons">
+        <input type="checkbox" name="connections" value="{{ s.roll }}"
+        {% if s.roll in student.connections %}checked{% endif %}> {{ s.name }} ({{ s.roll }})</div><br>
+    {% endfor %}
+    <br>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

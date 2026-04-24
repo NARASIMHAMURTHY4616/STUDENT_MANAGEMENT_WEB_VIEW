@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f2f5;
+            margin:0;
+            padding:0;
+        }
+        /* Glassy nav */
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+            border-radius: 12px;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top:0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #1abc9c;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #16a085;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Left side: student cards */
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+            gap: 20px;
+            flex:3;
+        }
+
+        .student-card {
+            background: rgba(255,255,255,0.85);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .student-card h3 {
+            margin:0 0 5px 0;
+        }
+        .student-card p {
+            margin:5px 0;
+        }
+        .student-card .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            color: white;
+            font-size: 14px;
+            margin-right:5px;
+        }
+        .badge.present { background-color: #2ecc71; }
+        .badge.absent { background-color: #e74c3c; }
+        .badge.not-marked { background-color: gray; }
+
+        .student-card .actions {
+            margin-top:10px;
+        }
+        .student-card .actions a {
+            text-decoration: none;
+            color: #3498db;
+            margin-right:10px;
+            font-weight: 500;
+        }
+        .student-card .connections {
+            margin-top:8px;
+            font-size:14px;
+        }
+
+        /* Right side: stats */
+        .stats-block {
+            flex:1;
+            background: rgba(255,255,255,0.85);
+            border-radius:12px;
+            padding:20px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        .stats-block h3 { margin-top:0; }
+        .stats-block .stat {
+            margin:10px 0;
+            font-weight:600;
+            font-size:16px;
+        }
+        .grades-list {
+            margin-left:15px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('add_student') }}">Add Student</a>
+            <a href="{{ url_for('mark_attendance') }}">Mark Attendance</a>
+            <a href="{{ url_for('view_student') }}">View Student</a>
+        </div>
+        <div>
+            <a href="{{ url_for('admin_logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Students Grid -->
+        <div class="students-grid">
+            {% for s in students %}
+            <div class="student-card">
+                <h3>{{ s.name }} ({{ s.roll }})</h3>
+                <p>Total: {{ s.total }} | Grade: {{ s.grade }}</p>
+
+                <!-- Attendance badge -->
+                {% if s.today_status == "Present" %}
+                    <span class="badge present">P</span>
+                {% elif s.today_status == "Absent" %}
+                    <span class="badge absent">A</span>
+                {% else %}
+                    <span class="badge not-marked">N</span>
+                {% endif %}
+
+                <!-- Connections -->
+                {% if s.connections %}
+                    <div class="connections">
+                        Friends: 
+                        {% for f in s.connections %}
+                            {{ f }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Actions -->
+                <div class="actions">
+                    <a href="{{ url_for('marks', roll=s.roll) }}">Add Marks</a>
+                    <a href="{{ url_for('mark_attendance') }}?roll={{ s.roll }}">Mark Attendance</a>
+                    <a href="{{ url_for('edit_student', roll=s.roll) }}">Edit</a>
+                    <a href="{{ url_for('delete_student', roll=s.roll) }}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Stats Block -->
+        <div class="stats-block">
+            <h3>Dashboard Stats</h3>
+            <div class="stat">Total Students: {{ total_students }}</div>
+            <div class="stat">Presents Today: {{ presents }}</div>
+            <div class="stat">Absents Today: {{ absents }}</div>
+            <div class="stat">Not Marked: {{ not_marked }}</div>
+            <div class="stat">Grade Summary:</div>
+            <ul class="grades-list">
+                <li>A: {{ grade_counts["A"] }}</li>
+                <li>B: {{ grade_counts["B"] }}</li>
+                <li>C: {{ grade_counts["C"] }}</li>
+                <li>Fail: {{ grade_counts["Fail"] }}</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

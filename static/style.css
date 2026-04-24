@@ -1,0 +1,245 @@
+/* ----------- RESET & BODY ------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    height: 100vh;
+    font-weight:bolder;    background:
+        linear-gradient(90deg ,white,pink,blue
+        );
+
+    background-size: cover;
+    background-position: center;
+    background-repeat:repeat;
+
+
+}
+
+/* ----------- NAVBAR ------------ */
+/* Glassy Navbar */
+nav {
+    position: sticky; /* stays on top */
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 40px;
+    background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+    backdrop-filter: blur(10px); /* glass effect */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border-radius: 0 0 20px 20px;
+    z-index: 999;
+}
+
+/* Nav links */
+nav a {
+    color: #00ff99; /* neon green */
+    margin-right: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+nav a:hover {
+    color: #fff;
+    background: rgba(0,255,153,0.2);
+    backdrop-filter: blur(8px);
+    transform: scale(1.1);
+}
+
+/* ----------- CONTAINER ------------ */
+.container {
+    padding: 20px;
+}
+
+/* ----------- FLASH MESSAGES ------------ */
+.flash {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+.flash-success { background:#d4edda; color:#155724; }
+.flash-danger { background:#f8d7da; color:#721c24; }
+.flash-warning { background:#fff3cd; color:#856404; }
+
+/* ----------- CARDS ------------ */
+.card {
+    background:linear-gradient(grassgreen,transparent);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex: 1 1 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+.card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.card a {
+    margin-right: 10px;
+    font-size: 13px;
+    color: #3498db;
+    text-decoration: none;
+}
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* ----------- STATS BLOCK ------------ */
+.stats {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.stats div {
+    flex: 1 1 150px;
+    background: #ecf0f1;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+.stats div h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+.stats div p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1abc9c;
+}
+
+/* ----------- BADGES ------------ */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
+
+/* Colors for attendance */
+.badge.present {
+    background-color: #2ecc71; /* green */
+}
+.badge.absent {
+    background-color: #e74c3c; /* red */
+}
+.badge.not-marked {
+    background-color: gray; /* default */
+}
+
+.badge-A { background: #2ecc71; }
+.badge-B { background: #3498db; }
+.badge-C { background: #f1c40f; }
+.badge-Fail { background: #e74c3c; }
+
+/* ----------- FORM ELEMENTS ------------ */
+form input[type="text"], form input[type="number"], form select ,form input[type="password"]{
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+form button {
+    background: #1abc9c;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+form button:hover {
+    background: #16a085;
+}
+
+/* ----------- FLEX GRID FOR CARDS ------------ */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ----------- HOME PAGE BG ------------ */
+.home-bg {
+    background: url('/static/home_bg.jpg') no-repeat center center/cover;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 32px;
+    text-shadow: 2px 2px 5px #000;
+}
+.attendance-badge {
+    padding: 3px 6px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.attendance-P { background: #2ecc71; } /* Green for Present */
+.attendance-A { background: #e74c3c; } /* Red for Absent */
+.attendance-N { background: #95a5a6; } /* Grey for not marked yet */
+.card-wrapper {
+    position: relative; /* Needed for badge to float on card */
+}
+#cons {
+color :blue ;
+background:linear-gradient(45deg,red,black);
+box-shadow:2px 2px 2px goldenrod;
+border :2px groove red;
+}
+#showing {
+    border: 3px groove goldenrod;
+    text-align: center;
+    box-shadow: 1em 4cap rebeccapurple;
+}
+#card-container
+{
+    background: linear-gradient(23deg,red,red,yellow);
+}
+ #showing p
+{
+   border: 1px solid red;
+   margin:4px 239px;
+   font-size: 20px;
+}
+p {
+    font-weight: bold;
+}
