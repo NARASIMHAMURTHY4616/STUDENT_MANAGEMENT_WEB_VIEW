@@ -224,6 +224,7 @@ def view_student():
                 attendance = list(attendance_col.find({"roll": roll}))
                 friends = list(students_col.find({"roll": {"$in": student.get("connections", [])}}))
     return render_template("view_student.html", student=student, attendance=attendance, friends=friends, error=error)
+// driver code 
 
-if __name__=="__main__":
+if __name__=="__main__": 
     app.run(debug=True)
