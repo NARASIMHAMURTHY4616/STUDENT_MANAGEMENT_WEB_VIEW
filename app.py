@@ -7,7 +7,7 @@ app.secret_key = "supersecretkey"
 
 # ---------------- DATABASE ----------------
 client = MongoClient("mongodb://localhost:27017/") // database  connection 
-db = client.student_db
+db = client.student_db // db collections instantiation 
 students_col = db.students
 attendance_col = db.attendance
 admins_col = db.admins
